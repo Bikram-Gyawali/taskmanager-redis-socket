@@ -38,4 +38,21 @@ redisClient.get("tasks", (error, tasks) => {
   taskList = task;
 });
 
+setTasks(taskList);
 
+io.on("connection", (socket) => {
+  socket.on("login", () => {
+    io.emit("allWorkspacecs", getMyWorkSpace());
+  });
+
+  socket.on("openWorkspace", (workspace) => {
+    socket.join(workspace.name);
+    io.in(workspace.name).emit("allTasks", getTasks(workspace.name));
+  });
+
+  socket.on("addWorkspace",(workspace)=>{
+    addNewWorkSpace(workspace);
+    io.emit("newWorkspace",{workspace});
+    redisClient.set("workspaces",getMyWorkSpace())
+  })
+});
