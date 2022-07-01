@@ -50,9 +50,17 @@ io.on("connection", (socket) => {
     io.in(workspace.name).emit("allTasks", getTasks(workspace.name));
   });
 
-  socket.on("addWorkspace",(workspace)=>{
+  socket.on("addWorkspace", (workspace) => {
     addNewWorkSpace(workspace);
-    io.emit("newWorkspace",{workspace});
-    redisClient.set("workspaces",getMyWorkSpace())
-  })
+    io.emit("newWorkspace", { workspace });
+    redisClient.set("workspaces", getMyWorkSpace());
+  });
+});
+
+socket.on("disconnect", () => {
+  console.log("User disconnected");
+});
+
+http.listen(5000, function () {
+  console.log("Listening on port 5000");
 });
