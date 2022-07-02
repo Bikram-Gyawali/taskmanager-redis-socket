@@ -58,7 +58,7 @@ io.on("connection", (socket) => {
 });
 
 socket.on("disconnect", () => {
-  console.log("User disconnected");
+  console.log("User is disconnected from socket");
 });
 
 http.listen(5000, function () {
