@@ -1,7 +1,7 @@
 // For schema details of the Workspace object, refer to workspace.js in backend folder
 
 import React, { useEffect, useState } from "react";
-import "./Workspace.css";
+import "./workspace.css";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 
@@ -78,7 +78,6 @@ function Workspaces(props) {
           <form
             className="task-form"
             noValidate="noValidate"
-            // onSubmit={addNewWorkspace}
           >
             <div className="form-group">
               <input
